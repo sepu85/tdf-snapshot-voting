@@ -1,10 +1,16 @@
 # Setting up a TDF space on Snapshot
 
-## 1. Test first, on the demo network
+**Read [`EXISTING-SNAPSHOT-SPACE.md`](./EXISTING-SNAPSHOT-SPACE.md) first.** TDF already has a real space, `traditionaldreamfactory.eth` — 19 proposals, 2022–2024, currently inactive. Reactivating and fixing its strategy config (Plan A, below) is strongly preferred over creating a new one (Plan B) — it keeps the existing history, followers, and ENS identity instead of starting from zero.
 
-Before touching a real space, create one at **[demo.snapshot.org](https://demo.snapshot.org)** (a free sandbox that behaves identically to production Snapshot but isn't indexed or taken seriously by anyone). Paste in one of the strategy configs from [`snapshot-space-config.md`](./snapshot-space-config.md), create a throwaway test proposal, vote from a wallet you control, and confirm the voting power shown matches what [`verify.mjs`](./verify.mjs) computes for that same address. Do not skip this step — an ABI or address typo in a strategy config fails silently (Snapshot shows `0` voting power, not an error).
+## 1. Test first, on the demo network — either way
 
-## 2. Create the real space
+Before touching a real space (existing or new), create a throwaway one at **[demo.snapshot.org](https://demo.snapshot.org)** (a free sandbox that behaves identically to production Snapshot but isn't indexed or taken seriously by anyone). Paste in one of the strategy configs from [`snapshot-space-config.md`](./snapshot-space-config.md), create a test proposal, vote from a wallet you control, and confirm the voting power shown matches what [`verify.mjs`](./verify.mjs) computes for that same address. Do not skip this step — an ABI or address typo in a strategy config fails silently (Snapshot shows `0` voting power, not an error).
+
+## 2a. Plan A (preferred): update the existing space
+
+Covered in full in [`EXISTING-SNAPSHOT-SPACE.md`](./EXISTING-SNAPSHOT-SPACE.md) — who controls it, exactly what's missing (Presence, Sweat, staked TDF), and the steps to add them via Settings → Voting Strategies. Skip to step 3 below once that's done.
+
+## 2b. Plan B (fallback only, if reactivation genuinely isn't possible): create a new space
 
 1. Go to [snapshot.org](https://snapshot.org) → "Create a space." It's free.
 2. Give it a name and, ideally, an ENS name matching TDF's existing identity (optional, costs a small on-chain registration if you want a custom ENS — a plain snapshot.org subdomain works fine without one).

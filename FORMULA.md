@@ -24,6 +24,8 @@ weight(address) = TDF.balanceOf(address)
 ```
 This matches what Closer's production governance actually reads today. It has a known bug: it silently ignores staked TDF, because staking moves TDF out of `balanceOf` and Closer never adds it back. The `tdf-governance-weight` dashboard's "Impact of excluding staked TDF" panel quantifies this gap live.
 
+**Not the same gap as TDF's existing Snapshot space.** `traditionaldreamfactory.eth` (see [`EXISTING-SNAPSHOT-SPACE.md`](./EXISTING-SNAPSHOT-SPACE.md)) is currently configured with *only* plain TDF `balanceOf` — no Presence, no Sweat, no staked TDF. That's more incomplete than even Variant 1 here, which at least includes Presence and Sweat.
+
 **Variant 2 — "Whitepaper-aligned / corrected"**
 ```
 weight(address) = TDF.balanceOf(address) + Staking.stakedBalanceOf(address)

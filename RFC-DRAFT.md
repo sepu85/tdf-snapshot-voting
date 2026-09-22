@@ -1,6 +1,6 @@
-# RFC (draft): independently-verifiable DAO voting
+# RFC: independently-verifiable DAO voting
 
-> **Status:** draft, not yet posted. Prepared to be opened as a GitHub **Issue** on `closerdao/closer-ui` (labels: `design`, `help wanted`) — not a PR, since this is a design conversation before code is proposed for merge. The repo's Discussions tab is enabled but has exactly one post ever (the default "welcome" message); Issues is where the team is actually active (134 open, mostly the maintainer's own recent tickets), so that's where this goes, framed clearly as `[RFC]` in the title so it isn't mistaken for a bug report. **Phase 1 below is also being prepared as a real, working PR** — it needs no closer-api cooperation to be useful, so there's no reason to wait on the issue thread to have something concrete to look at.
+> **Status:** posted as [closerdao/closer-ui#1178](https://github.com/closerdao/closer-ui/issues/1178). **Phase 1 is now a real, open PR: [closerdao/closer-ui#1179](https://github.com/closerdao/closer-ui/pull/1179)** — built on the real upstream `develop`, verified locally before pushing (new unit tests 6/6, the existing `proposalProofs`/`proposalAttestation`/`ProposalAttestation` suites unmodified and still 54/54, full `closer` package suite 2660/2660, lint/typecheck/prettier all clean). This file stays as the design record; the issue and PR are now the live threads.
 
 ## Summary
 
@@ -18,18 +18,18 @@ This RFC proposes closing that gap, in phases, without touching what already wor
 - Not a critique of unfinished work — `packages/closer/components/Governance/__tests__/ProposalAttestation.test.tsx` already asserts an honest `governance_attestation_scope_note` string that the UI "never claims the blockchain validated the votes." The team already built the correct disclosure; this RFC proposes finishing the guarantee behind it.
 - `docs/tickets/governance-incremental-voting-api.md` (already in this repo, "status: ready for backend") already states: *"Each increment carries its own signature, so each one stays independently verifiable."* Real per-vote signatures are already assumed on the roadmap.
 - `documentation/governance-token/README.md` already describes TDF voting as "conducted using tools like Snapshot." This RFC is one way to make that true.
-- This proposal converges with one independently raised by another TDF community member, arrived at separately — worked-out implementation detail from that proposal is folded in below (see [`ipfs-design.md`](https://github.com/sepu85/tdf-snapshot-voting/blob/main/ipfs-design.md) for the full design and what was corrected from it).
+- This proposal converges with one independently raised by another TDF community member, arrived at separately — worked-out implementation detail from that proposal is folded in below (see [`ipfs-design.md`](https://github.com/sepu85/tdf-snapshot-voting/blob/master/ipfs-design.md) for the full design and what was corrected from it).
 
 ## Proposed phases
 
-**Phase 1 — structured, wallet-signed vote receipts, published to IPFS. Mergeable as a real PR today; needs zero closer-api changes to work.**
+**Phase 1 — structured, wallet-signed vote receipts, published to IPFS. Open as [closerdao/closer-ui#1179](https://github.com/closerdao/closer-ui/pull/1179); needs zero closer-api changes to work.**
 
 - Instead of signing a loose sentence, `handleVote` builds a small structured payload (`{ proposalId, vote, weight, votedAt }`) and signs it with the **existing** `signMessage`/`personal_sign` call — no wallet-provider changes needed.
 - A new `packages/closer/utils/ipfsVote.helpers.ts` publishes the signed payload to IPFS via a pinning provider's HTTP API (config: `NEXT_PUBLIC_IPFS_PINNING_TOKEN`, `IPFS_PINNING_ENDPOINT`) and returns a CID. **Non-blocking**: if publishing fails, the vote still submits normally, flagged "not published" instead of blocked.
 - The member sees their CID and a public gateway link immediately — a real vote receipt, which doesn't exist today.
 - The existing `POST /proposals/:id/vote` call gains additive fields: `voterAddress`, `walletSignature`, `signedMessage`, and now `cid`. closer-api can safely ignore all of them; if it happens to store and return `cid` too, Closer's own existing per-proposal vote list becomes a ready-made public discovery index for free — a much smaller ask than a backend rewrite, since it's pure pass-through with no new verification logic.
 - Anyone, anytime, can independently re-fetch a CID, verify its signature (`ethers.utils.verifyMessage` — already a dependency), and cross-check the claimed weight, extending the same kind of check `ProposalAttestation.tsx` already runs for the aggregate down to each individual vote.
-- Full design, file list, and the two corrections made to the community member's original version: [`ipfs-design.md`](https://github.com/sepu85/tdf-snapshot-voting/blob/main/ipfs-design.md). Concrete diff: [`phase1-closer-ui-patch.md`](https://github.com/sepu85/tdf-snapshot-voting/blob/main/phase1-closer-ui-patch.md).
+- Full design, file list, and the two corrections made to the community member's original version: [`ipfs-design.md`](https://github.com/sepu85/tdf-snapshot-voting/blob/master/ipfs-design.md). The PR itself: [closerdao/closer-ui#1179](https://github.com/closerdao/closer-ui/pull/1179) (the design record it was built from is kept at [`phase1-closer-ui-patch.md`](https://github.com/sepu85/tdf-snapshot-voting/blob/master/phase1-closer-ui-patch.md)).
 - **Real behavior change to flag explicitly, not bury**: publishing to IPFS makes every voter's wallet address public next to their choice, permanently, the moment they vote — the same trade-off Snapshot makes, but different from today's "only you see your own vote" behavior. Worth a clear member-facing notice before this ships, not just a technical footnote.
 
 **Phase 2 — client-side cross-check, still closer-ui-only.**
@@ -47,10 +47,10 @@ Actually verifying signatures server-side (rejecting bad ones at cast time, not 
 
 ## What I'm asking for
 
-- A read on Phase 1 as a real PR — anything about the additive fields (`voterAddress`, `walletSignature`, `signedMessage`, `cid`) or the IPFS provider choice that needs to change before it's mergeable?
+- A review of [#1179](https://github.com/closerdao/closer-ui/pull/1179) — anything about the additive fields (`voterAddress`, `walletSignature`, `signedMessage`, `cid`) or the IPFS provider choice that needs to change before it's mergeable?
 - Whether closer-api storing and returning the `cid` field (pure pass-through, no verification logic) is realistic on any timeline — it's a much smaller ask than full Phase 4 enforcement, and meaningfully simplifies discovery if you're willing.
 - Any concerns about the member-facing privacy change (permanent public address-to-vote linkage) that should shape rollout — e.g. a notice step, or an opt-in period.
 
 cc @acharlop — most recent author across `crypto.ts`, `proposalProofs.ts`, `proposalAttestation.ts`, and the governance attestation UI/tests.
 
-Related: a companion TDF governance proposal (only drafted atm) ([`TDF-PROPOSAL-DRAFT.md`](https://github.com/sepu85/tdf-snapshot-voting/blob/main/TDF-PROPOSAL-DRAFT.md)) explains the conflict-of-interest context and options for the wider community, independent of this technical thread.
+Related: a companion TDF governance proposal (only drafted atm) ([`TDF-PROPOSAL-DRAFT.md`](https://github.com/sepu85/tdf-snapshot-voting/blob/master/TDF-PROPOSAL-DRAFT.md)) explains the conflict-of-interest context and options for the wider community, independent of this technical thread.

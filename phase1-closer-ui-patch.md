@@ -1,6 +1,8 @@
-# Phase 1 — proposed closer-ui patch (reference only, not yet applied)
+# Phase 1 — closer-ui patch (design record; applied in the open PR)
 
-Structured, wallet-signed, IPFS-published vote receipts. See [`ipfs-design.md`](./ipfs-design.md) for the full design and reasoning. This is the exact starting point for the real PR — nothing here has been applied to `closer-ui` yet.
+Structured, wallet-signed, IPFS-published vote receipts. See [`ipfs-design.md`](./ipfs-design.md) for the full design and reasoning.
+
+> **Status:** applied, as an open PR — [closerdao/closer-ui#1179](https://github.com/closerdao/closer-ui/pull/1179). This file is kept as the design record the PR was built from; the real diff (and its test results) live on the PR itself. Minor implementation details below (e.g. exact variable names) may differ slightly from the merged code — the PR is the source of truth, this is the rationale.
 
 **Targets the real vote flow.** An earlier version of this idea (from an independent proposal by another community member) targeted `packages/closer/components/Governance/VoteModal.tsx`. That component is unused — not imported by `pages/governance/[slug].tsx` or anywhere else in the app. The actual vote-casting logic is `handleVote`, inside `[slug].tsx` itself. Everything below targets that.
 

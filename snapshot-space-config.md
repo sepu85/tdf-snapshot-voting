@@ -1,5 +1,7 @@
 # Snapshot space configuration
 
+> **Read [`EXISTING-SNAPSHOT-SPACE.md`](./EXISTING-SNAPSHOT-SPACE.md) first.** TDF already has a real Snapshot space (`traditionaldreamfactory.eth`, 19 proposals, 2022–2024) — its *current* strategy config is just plain TDF `erc20-balance-of`, confirmed live against Snapshot's own API. Presence, Sweat, and staked TDF aren't configured at all. The configs below are for **updating that existing space** (preferred — see who controls it) or, only if that's genuinely not possible, configuring a new one from scratch.
+
 These are literal `strategies` arrays to paste into a Snapshot space's settings (Settings → Voting strategies → "Add strategy" → or paste directly if using the raw JSON editor). All facts below about Snapshot's own strategy behavior were confirmed directly against [`snapshot-labs/snapshot-strategies`](https://github.com/snapshot-labs/snapshot-strategies) (the source of truth Snapshot itself uses), not assumed.
 
 ## How Snapshot combines multiple strategies
