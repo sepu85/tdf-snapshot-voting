@@ -14,6 +14,7 @@ This RFC proposes closing that gap, in phases, without touching what already wor
 
 ## Why now / why this framing
 
+- Recent Findings on [TDF Governance Vote Verifiability — Proposal #24 Findings](https://claude.ai/artifact/1GwGswG87hYETcbkZ2b3P1#49fae162-f89b.m75976w5ayj.9073~how-this-compares-to-snapshot) brought to evidence that Closer voting system proves a voting result wasn't tampered with after publishing the result fact. __It does not prove the result was tallied honestly and correctly in the first place__.
 - Not a critique of unfinished work — `packages/closer/components/Governance/__tests__/ProposalAttestation.test.tsx` already asserts an honest `governance_attestation_scope_note` string that the UI "never claims the blockchain validated the votes." The team already built the correct disclosure; this RFC proposes finishing the guarantee behind it.
 - `docs/tickets/governance-incremental-voting-api.md` (already in this repo, "status: ready for backend") already states: *"Each increment carries its own signature, so each one stays independently verifiable."* Real per-vote signatures are already assumed on the roadmap.
 - `documentation/governance-token/README.md` already describes TDF voting as "conducted using tools like Snapshot." This RFC is one way to make that true.
@@ -52,4 +53,4 @@ Actually verifying signatures server-side (rejecting bad ones at cast time, not 
 
 cc @acharlop — most recent author across `crypto.ts`, `proposalProofs.ts`, `proposalAttestation.ts`, and the governance attestation UI/tests.
 
-Related: a companion TDF governance proposal ([`TDF-PROPOSAL-DRAFT.md`](https://github.com/sepu85/tdf-snapshot-voting/blob/main/TDF-PROPOSAL-DRAFT.md)) explains the conflict-of-interest context and options for the wider community, independent of this technical thread.
+Related: a companion TDF governance proposal (only drafted atm) ([`TDF-PROPOSAL-DRAFT.md`](https://github.com/sepu85/tdf-snapshot-voting/blob/main/TDF-PROPOSAL-DRAFT.md)) explains the conflict-of-interest context and options for the wider community, independent of this technical thread.
