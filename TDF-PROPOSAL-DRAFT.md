@@ -14,8 +14,8 @@ This matters specifically because **the same admin who operates the Closer platf
 
 ## What this proposal asks
 
-1. **Endorse the technical RFC** already opened at `closerdao/closer-ui#<n>`, which proposes making votes wallet-signed, publicly stored, and independently recomputable — closing the gap to roughly what Snapshot.org already provides for other DAOs.
-2. **Ask Closer's maintainers to prioritize the backend portion** (Phase 4 of the RFC — real signature verification, published weight-snapshot blocks, a public per-proposal vote list) on a reasonable timeline. This is the part that structurally cannot be delivered by an outside contributor alone, since `closer-api` is a private repository.
+1. **Endorse the technical RFC** already opened at `closerdao/closer-ui#<n>`, which proposes making votes wallet-signed, published to IPFS, and independently verifiable — closing most of the gap to what Snapshot.org already provides for other DAOs, using a design (Phase 1) that needs **no cooperation from Closer's private backend** to work.
+2. **Ask Closer's maintainers, on whatever timeline they can realistically commit to, to consider the small, optional backend steps** the RFC lays out (storing and passing through one additional field; eventually, real server-side signature verification). None of this proposal depends on that happening — it's an ask, not a blocker.
 3. **In the meantime, authorize a parallel, non-binding pilot on Snapshot.org**, replicating TDF's existing voting-weight formula exactly (see `sepu85/tdf-snapshot-voting`), run alongside at least one real Closer vote for comparison before any future proposal considers making it binding.
 4. **Establish a rotating Governance Audit Committee** (3–5 members, elected or volunteer, explicitly excluding the Closer admin and anyone with a declared conflict on a given proposal) to manually verify results in the meantime — see `sepu85/tdf-snapshot-voting`'s `SOCIAL-AUDIT.md` for the process and its honestly-stated limits.
 
