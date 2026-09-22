@@ -1,6 +1,6 @@
 # RFC (draft): independently-verifiable DAO voting
 
-> **Status:** draft, not yet posted. This is prepared for review before being opened as an issue on `closerdao/closer-ui`. Replace `<n>` with the real issue number once opened, and update the cross-references in this repo (`phase1-closer-ui-patch.md`) to match.
+> **Status:** draft, not yet posted. Prepared to be opened as a GitHub **Issue** on `closerdao/closer-ui` (labels: `design`, `help wanted`) — not a PR, since this is a design conversation before any code is proposed for merge. The repo's Discussions tab is enabled but has exactly one post ever (the default "welcome" message); Issues is where the team is actually active (134 open, mostly the maintainer's own recent tickets), so that's where this goes, framed clearly as `[RFC]` in the title so it isn't mistaken for a bug report. The concrete Phase 1 diff ([`phase1-closer-ui-patch.md`](./phase1-closer-ui-patch.md)) is meant to become a real, small PR referencing this issue shortly after — a working PR gets more attention than a request on its own. Replace `<n>` with the real issue number once opened, and update the cross-references in this repo to match.
 
 ## Summary
 
@@ -31,8 +31,11 @@ What should actually be signed: `{ proposalId, choice, weight, incrementIndex, v
 - **Domain:** omit `verifyingContract` (Snapshot's own precedent — no on-chain enforcement to bind to) vs. nominally binding to a `proof-of-presence` contract address.
 - **Weight-binding:** does the signed struct commit to a client-claimed weight closer-api must match, or is weight left purely server-computed with only `{proposalId, choice, incrementIndex}` signed? This one needs closer-api's input directly — it's a real protocol fork, not a client-side decision.
 
-**Phase 4 — backend enforcement (closer-api, private — needs your team).**
-Actually verifying the signature, storing and exposing wallet addresses, publishing a recomputable weight-snapshot block, and exposing a public per-proposal vote list. This is the part an outside PR structurally cannot deliver — flagging it here as a direct ask rather than pretending it's solvable from `closer-ui` alone.
+**Phase 4 — public data availability. Two paths, not mutually exclusive.**
+
+*4a (proposed as the near-term default) — client-side, via IPFS, no closer-api rebuild needed.* Once Phase 1 lands, verifying a signature is pure public-key math (`ethers.utils.verifyMessage`) — no backend involvement required. The only real gap left is making the raw `{voterAddress, message, signature, weight}` data durably available to check against, and that's a data-availability problem `closer-ui` and the community can solve on their own: publish each vote receipt to IPFS from the browser at cast time, assemble a public per-proposal manifest, let anyone independently verify and re-tally. Full design: [`phase4-ipfs-alternative.md`](https://github.com/sepu85/tdf-snapshot-voting/blob/main/phase4-ipfs-alternative.md). The only thing this path asks of closer-api, and only if they're willing, is adding **one more field** — the manifest's CID — to the attestation transaction they already broadcast. That's a much smaller ask than 4b below, since it touches nothing they currently own.
+
+*4b (the ideal, longer-term state) — backend enforcement in closer-api.* Actually verifying signatures server-side (rejecting bad ones at cast time, not just catching them after), storing and exposing wallet addresses, publishing a recomputable weight-snapshot block, and running a public vote-list endpoint. This is the part an outside PR structurally cannot deliver on its own — flagged here as a direct ask, not something 4a is meant to substitute for indefinitely. Realistic to pursue in parallel with 4a, on whatever timeline closer-api's maintainers can actually commit to.
 
 ## Backward compatibility
 
@@ -42,7 +45,8 @@ Actually verifying the signature, storing and exposing wallet addresses, publish
 
 - A read on Phase 1 — is the additive-fields approach above acceptable to merge as-is?
 - Direction on the Phase 3 open questions (domain, weight-binding) — these need closer-api's perspective, not just closer-ui's.
-- Whether closer-api engagement on Phase 4 is realistic to plan for, and on what rough timeline, so the community proposal referencing this RFC can set expectations honestly.
+- Whether Phase 4a (IPFS, client-side) is reasonable to build against `closer-ui` alone — it shouldn't need closer-api sign-off at all, but flagging it here so it's not a surprise.
+- Whether adding the one manifest-CID field to the existing attestation transaction (the small ask inside 4a) is realistic, and separately, whether closer-api engagement on the fuller 4b is realistic to plan for on any timeline — so the community proposal referencing this RFC can set expectations honestly either way.
 
 cc @acharlop — you're the most recent author across `crypto.ts`, `proposalProofs.ts`, `proposalAttestation.ts`, and the governance attestation UI/tests, so flagging this directly rather than hoping it's seen.
 

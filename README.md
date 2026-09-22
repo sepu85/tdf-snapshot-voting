@@ -8,7 +8,7 @@ This repo gives the TDF community **three independent options**, so nobody has t
 
 | Option | What it is | Where |
 |---|---|---|
-| **A — Fix Closer** | A phased plan to make Closer's own voting cryptographically verifiable, submitted as an RFC to `closerdao/closer-ui` and a companion TDF governance proposal. | [`RFC-DRAFT.md`](./RFC-DRAFT.md), [`TDF-PROPOSAL-DRAFT.md`](./TDF-PROPOSAL-DRAFT.md), [`phase1-closer-ui-patch.md`](./phase1-closer-ui-patch.md) |
+| **A — Fix Closer** | A phased plan to make Closer's own voting cryptographically verifiable, submitted as an RFC to `closerdao/closer-ui` and a companion TDF governance proposal. Includes a client-side/IPFS path that doesn't require waiting on closer-api at all. | [`RFC-DRAFT.md`](./RFC-DRAFT.md), [`phase1-closer-ui-patch.md`](./phase1-closer-ui-patch.md), [`phase4-ipfs-alternative.md`](./phase4-ipfs-alternative.md), [`TDF-PROPOSAL-DRAFT.md`](./TDF-PROPOSAL-DRAFT.md) |
 | **B — Vote on Snapshot in the meantime** | A documented, ready-to-use way to replicate TDF's exact voting-weight formula on [Snapshot.org](https://snapshot.org), usable in parallel with Closer today, with no code changes needed anywhere. | [`FORMULA.md`](./FORMULA.md), [`snapshot-space-config.md`](./snapshot-space-config.md), [`SETUP.md`](./SETUP.md), [`verify.mjs`](./verify.mjs) |
 | **C — Social audit process** | A no-code, human-process check: a rotating, elected panel of community members independently verifies each result. Works regardless of which other option is chosen. | [`SOCIAL-AUDIT.md`](./SOCIAL-AUDIT.md) |
 
