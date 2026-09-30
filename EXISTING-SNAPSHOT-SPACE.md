@@ -27,7 +27,7 @@ returns:
 }
 ```
 
-**Confirmed: only plain TDF `balanceOf` counts.** Presence and Sweat are not configured at all, and neither is staked TDF — this space is actually *more* incomplete than [`FORMULA.md`](./FORMULA.md)'s "Variant 1," which at least includes Presence and Sweat. `validation: "any"` means anyone can currently submit a proposal (no membership gate), and quorum is a flat `500` (TDF-weighted, given the strategy above).
+**Confirmed: only plain TDF `balanceOf` counts.** Presence, Sweat and staked TDF are not configured at all — none of the four inputs [`FORMULA.md`](./FORMULA.md) documents, beyond plain TDF. `validation: "any"` means anyone can currently submit a proposal (no membership gate), and quorum is a flat `500` (TDF-weighted, given the strategy above).
 
 ## Who can actually change this
 
@@ -46,7 +46,7 @@ Two separate things control a Snapshot space, and they don't currently overlap h
 
 1. Connect the controlling wallet at [snapshot.org](https://snapshot.org), navigate to `traditionaldreamfactory.eth`.
 2. Space Settings → Voting Strategies.
-3. Add the missing strategies from [`snapshot-space-config.md`](./snapshot-space-config.md) — `erc20-balance-of` for Presence and Sweat, and `contract-call` for staked TDF (Variant 2), alongside the existing TDF strategy (don't remove it — Snapshot sums scores across all configured strategies, so adding is additive).
+3. Add the missing strategies from [`snapshot-space-config.md`](./snapshot-space-config.md) — `contract-call` for staked TDF, and `erc20-balance-of` for Presence and Sweat — alongside the existing TDF strategy (don't remove it — Snapshot sums scores across all configured strategies, so adding is additive).
 4. Save, then test with a throwaway proposal before trusting it for anything real — same "verify with [`verify.mjs`](./verify.mjs) against a few known addresses" advice as [`SETUP.md`](./SETUP.md) gives for a new space.
 5. While in there: consider whether `validation: "any"` and the flat `quorum: 500` still match current governance intent — both predate this effort and are worth a deliberate decision, not just inheriting silently.
 

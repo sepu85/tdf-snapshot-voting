@@ -14,27 +14,21 @@ Source: [`sepu85/tdf-governance-weight`](https://github.com/sepu85/tdf-governanc
 
 All four weight tokens are standard ERC20s; confirm each one's `decimals()` on-chain rather than assuming 18, though 18 is expected for all of them.
 
-## Two formula variants — document both, don't silently pick one
+## The formula
 
-**Variant 1 — "As production reads it today"**
-```
-weight(address) = TDF.balanceOf(address)
-                 + Presence.balanceOf(address)
-                 + Sweat.balanceOf(address)
-```
-This matches what Closer's production governance actually reads today. It has a known bug: it silently ignores staked TDF, because staking moves TDF out of `balanceOf` and Closer never adds it back. The `tdf-governance-weight` dashboard's "Impact of excluding staked TDF" panel quantifies this gap live.
-
-**Not the same gap as TDF's existing Snapshot space.** `traditionaldreamfactory.eth` (see [`EXISTING-SNAPSHOT-SPACE.md`](./EXISTING-SNAPSHOT-SPACE.md)) is currently configured with *only* plain TDF `balanceOf` — no Presence, no Sweat, no staked TDF. That's more incomplete than even Variant 1 here, which at least includes Presence and Sweat.
-
-**Variant 2 — "Whitepaper-aligned / corrected"**
 ```
 weight(address) = TDF.balanceOf(address) + Staking.stakedBalanceOf(address)
                  + Presence.balanceOf(address)
                  + Sweat.balanceOf(address)
 ```
-This is the "Total TDF" toggle in the dashboard — TDF plus whatever's staked, counted as one pool. Closer to the intent of not penalizing members for staking.
 
-Both variants weight Presence and Sweat at **×1** (equal to each other and to TDF), per the OASA whitepaper's own suggested formula. The dashboard's exploratory Sweat-multiplier slider (default ×5 in that UI) is for sensitivity analysis only — it is **not** a production or recommended value; don't carry it into a Snapshot config without an explicit community decision to do so.
+This is the "Total TDF" toggle in the `tdf-governance-weight` dashboard — TDF plus whatever's staked, counted as one pool, plus Presence and Sweat.
+
+**Note on history:** an earlier version of this document described two variants, because staked TDF was excluded from production at the time — a bug that silently dropped it from every member's weight. That's since been corrected in production. There is only one formula to replicate now, and it's the one above; any Snapshot configuration should use it rather than the plain-`balanceOf`-only version some earlier notes in this repo describe.
+
+Presence and Sweat are weighted at **×1** (equal to each other and to TDF), per the OASA whitepaper's own suggested formula. The dashboard's exploratory Sweat-multiplier slider (default ×5 in that UI) is for sensitivity analysis only — it is **not** a production or recommended value; don't carry it into a Snapshot config without an explicit community decision to do so.
+
+**Not the same gap as TDF's existing Snapshot space.** `traditionaldreamfactory.eth` (see [`EXISTING-SNAPSHOT-SPACE.md`](./EXISTING-SNAPSHOT-SPACE.md)) is currently configured with *only* plain TDF `balanceOf` — no staking, no Presence, no Sweat. That's the gap Snapshot's own config needs to close, documented in [`snapshot-space-config.md`](./snapshot-space-config.md).
 
 ## Open question: membership gating
 
@@ -42,4 +36,4 @@ The whitepaper's Member requirement is that "Token Holders that are also Project
 
 ## What this formula does *not* decide
 
-Which variant (or whether to gate by membership) is a community decision, not a technical one. This document exists so the community can make that decision with the real mechanics in front of them, not so this repo makes it for them.
+Whether to gate by membership is a community decision, not a technical one. This document exists so the community can make that decision with the real mechanics in front of them, not so this repo makes it for them.
