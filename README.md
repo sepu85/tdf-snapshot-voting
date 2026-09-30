@@ -4,7 +4,7 @@ TDF's DAO governance currently runs on the [Closer](https://github.com/closerdao
 
 This matters more than usual for TDF because **the same admin who operates Closer is also a TDF citizen with strong agency in the DAO** — a structural conflict of interest, whether or not it's ever been acted on.
 
-This repo gives the TDF community **three complementary tracks**, bundled into one proposal so nobody has to wait on any one of them — see [`PROPOSAL.md`](./PROPOSAL.md), written for a non-technical DAO in TDF's own What/Why/Impact/Resources/How template:
+This repo gives the TDF community **three complementary tracks**, bundled into one proposal so nobody has to wait on any one of them — see [`PROPOSAL.md`](./PROPOSAL.md) ("Making Our Votes Checkable"), written in plain language for a non-technical DAO:
 
 | Track | What it is | Where |
 |---|---|---|

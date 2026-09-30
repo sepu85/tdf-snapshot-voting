@@ -1,6 +1,6 @@
-# Show Your Work
+# Making Our Votes Checkable
 
-*A TDF governance proposal — three ways to make our own votes checkable by anyone, bundled into one ask.*
+*A TDF governance proposal — three complementary ways to get there, bundled into one ask.*
 
 > Draft, for community discussion before a formal vote. Background: [the governance report](https://claude.ai/artifact/JcAcGuKqtQPsP6vGqbgJbC) (finding 4), its [plain-language companion](https://claude.ai/artifact/G4K84cwxagr1tCS7QY9n6n), and the technical thread at [closer-ui#1178](https://github.com/closerdao/closer-ui/issues/1178).
 
