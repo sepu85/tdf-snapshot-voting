@@ -1,52 +1,84 @@
-# Show Your Work: Make Our Votes Checkable
+# Show Your Work
 
-> Draft, for community discussion before formal submission. Background reading: [the governance report](https://claude.ai/artifact/JcAcGuKqtQPsP6vGqbgJbC) (finding 4) and its [plain-language companion](https://claude.ai/artifact/G4K84cwxagr1tCS7QY9n6n), and the technical thread at [closer-ui#1178](https://github.com/closerdao/closer-ui/issues/1178).
+*A TDF governance proposal — three ways to make our own votes checkable by anyone, bundled into one ask.*
 
-## What?
+> Draft, for community discussion before a formal vote. Background: [the governance report](https://claude.ai/artifact/JcAcGuKqtQPsP6vGqbgJbC) (finding 4), its [plain-language companion](https://claude.ai/artifact/G4K84cwxagr1tCS7QY9n6n), and the technical thread at [closer-ui#1178](https://github.com/closerdao/closer-ui/issues/1178).
 
-We're asking the DAO to back three steps, together, that let anyone check that a vote was counted correctly — not just trust that it was:
+Some of you already read the governance report from this year's Gathering, or its short version. One finding in it keeps coming up in conversation, so it gets its own proposal: **right now, nobody outside the platform can check that a vote count is correct — and there's no way for the platform to prove it to you even if it wanted to, because the system that runs our votes was never built to produce that kind of proof.**
 
-1. **Ask Closer's platform team to finish making votes checkable on our own platform.** Each vote should be signed by the voter's own wallet and published somewhere anyone can look, not only stored in a private database. This has already been requested in the open, with working code offered: [closer-ui#1178](https://github.com/closerdao/closer-ui/issues/1178).
-2. **Reactivate TDF's own Snapshot space as a parallel, non-binding option in the meantime.** We already have one — 19 real proposals from 2022 to 2024, unused since. On Snapshot, every vote really is signed by a wallet and stored publicly, so anyone can check any result without trusting a single team's database. It needs its settings updated to count Presence and Sweat the way our platform does, and someone with access to do that. Snapshot also supports more than a plain yes/no/abstain — it can show a proposal as several options to choose between, or several to rank, not just one binary question. That would have let this very proposal be a real multi-choice vote instead of the bundled ask below.
-3. **Ask Closer's team for a simple after-the-vote receipt.** After a vote closes, publish enough that any of us can look up our own vote and confirm it was counted once, correctly, at the right weight — no wallets, no technical steps, just something you could check like a receipt.
+That's not a small thing for a DAO. So here are three ways we could fix it, in plain words, with the honest trade-offs of each. This isn't asking you to pick one. It's asking us to look at them together before a real vote in the next week or two.
 
-These aren't three options to choose between — they're three things that can all move forward at once, and none of them requires waiting on the others. Because our platform's own voting tool only supports yes, no or abstain, this proposal asks one question rather than three: **do we back pursuing all of this together?** A "Yes" is a mandate to pursue all three in parallel. It is not a commitment to make any one of them official — that's a separate decision, later, once we know more. (It's a small irony worth noting: the very limitation that forces this proposal into one bundled yes/no is itself one more thing Snapshot doesn't have.)
+## Why this needs fixing
 
-## Why?
+When you vote today, you connect your wallet and a green tick later tells you the result "matches the blockchain." That tick is real. But all it proves is that the number hasn't changed since it was published — not that the number was right to begin with. Your wallet never actually signs your vote. The counting happens on a private system that only one party can see into.
 
-Today, when you vote, a green tick tells you the result "matches the blockchain." That's true, but it proves less than it sounds like: it only shows the number hasn't been changed since it was published, not that the number was right to begin with. Your wallet doesn't actually sign your vote. The counting happens on a system only one party can see into — and there's no way for them to prove the count to you even if they wanted to, because the system was never built to produce that kind of proof. Nobody outside the platform can independently check that a vote count is correct.
+We put our governance on a blockchain specifically so no single party would have to be trusted with the count. Right now, one party still is.
 
-We put our governance on a blockchain specifically so no single party would have to be trusted with the count. Right now, one still is.
+> Nobody is accusing anyone of anything, and nothing here says a result has ever been wrong. It says that if a close vote were ever disputed, we currently have no way to settle the argument except by trusting each other's word — and a community that has to rely on personal trust for something this important hasn't quite finished building the institution yet.
 
-This isn't an accusation. Nothing here says a result has ever been wrong, and the people who built and run our platform are stretched thin doing a hard job — their own reply on the issue above says as much, honestly:
+We only noticed how much this mattered because last year's vote on the Land Development Plan was the first one that was actually close. While every vote passed easily, nobody thought to check the plumbing. Now that we know how to disagree with each other, it's worth being able to prove the count when it counts.
+
+## Three ways forward
+
+You wouldn't need to save any codes, understand any cryptography, or do anything differently when you vote. Each option below changes what happens behind the scenes, not what voting feels like for you.
+
+### 1. Ask Closer to fix their own platform
+*the ideal outcome, on their timeline*
+
+This is our platform's own team properly finishing what they started: make each vote actually signed by your wallet, and published somewhere anyone can check — not just a private database. This is the best outcome if it happens, because it fixes the actual tool we vote on, for good, without anyone needing to learn a second system.
+
+Someone from our community already opened this as a request with the team that builds the platform, in the open, where anyone can read it: [closer-ui #1178](https://github.com/closerdao/closer-ui/issues/1178). Part of the fix is already written and offered to them as ready-to-use code.
+
+**The honest part.** Their team wrote back, and it's worth reading in full rather than as a brush-off:
 
 > "In terms of prioritization though right now the highest priority is addressing a lot of the booking issues that are really negatively impacting [people living here] and others at the moment. So until the booking issues are resolved and we can guarantee a level of consistency…"
 
-That's fair, and worth respecting. It's also why waiting on one fix, from one team, on one timeline, isn't a plan — it's a hope. This proposal exists so we don't have to just hope.
+That's a small team doing too much with too little, being straight with us about it — booking problems for people who actually live here understandably come before a governance fix nobody has been hurt by yet. Which is fair. It also means we shouldn't sit and wait for it before doing anything else.
 
-It matters more now than it used to. While every vote passed easily, nobody needed to check the plumbing. Last year's vote on the Land Development Plan was the first genuinely close one — and the moment a result is close, an uncheckable count can't settle a dispute about its own output. Better to fix this before that happens than after.
+**What this means for you:** worth asking for, worth being patient about, and not something to plan our next vote around.
 
-## Impact
+### 2. Vote on Snapshot in the meantime
+*borrows a fix that already exists*
 
-If this passes:
-- Anyone will eventually be able to independently confirm a vote result, instead of taking the platform's word for it.
-- We stop being dependent on one team's timeline for something this important — the Snapshot pilot and the receipt ask both move regardless of when (or whether) the full platform fix lands.
-- We get real, comparable data: at least one vote run in parallel on both our platform and Snapshot, so we can see for ourselves whether the numbers match.
-- Nothing changes about how you vote today. Same wallet, same click, for all three tracks.
+Snapshot is the voting tool most crypto communities use, TDF included — before we built our own. Our old space is still there: **19 real proposals, from 2022 to 2024**, sitting unused since. On Snapshot, every vote really is signed by your wallet and stored somewhere public, so anyone can check any vote at any time. Nobody has to trust a single team's database, because there isn't one to trust.
 
-If it doesn't pass, nothing about how voting works today changes either way — we'd simply not be pursuing these fixes as a DAO-backed effort for now.
+For you, voting would feel almost identical: connect your wallet, pick yes, no or abstain. The difference is entirely on the checking side, not the voting side. The catch is that it's currently only set up to count plain TDF tokens — it would need updating to count Presence and Sweat too, the same way our own platform does, and someone who can access the old space's settings would need to do that update.
 
-## Resources
+Worth knowing too: Snapshot doesn't force every proposal into a plain yes/no/abstain the way our platform does — it can show several options to choose between, or rank. Our own platform's rigid yes/no/abstain is part of why this very proposal has to bundle three ideas into one ask instead of letting you weigh them separately (more on that below). Snapshot wouldn't have that limitation.
 
-Mostly time, not money:
-- Someone (or a small group) to find who can access TDF's existing Snapshot space and update its settings — likely one of the wallets that authored our old DIP proposals, or whoever controls the `traditionaldreamfactory.eth` ENS name.
-- Someone to run the side-by-side pilot vote and write up what it found.
-- No budget ask. Snapshot is free to use. Reactivating our old space costs nothing beyond the time above.
-- From Closer's team: their own time, on their own schedule, for tracks 1 and 3 — this proposal asks, it doesn't demand or fund.
+**What this means for you:** same wallet, same click, but this time anyone — including you — could independently prove the result afterward.
 
-## How?
+### 3. Ask Closer for a simple after-the-vote check
+*smallest ask, biggest trust gap it can't quite close*
 
-1. **Track 1 (platform fix):** continues on the existing GitHub thread. Our role as a DAO is to show the team that citizens actually want this prioritized — this proposal, if it passes, is that signal.
-2. **Track 2 (Snapshot pilot):** identify who controls the existing space, ask them to update its voting-weight settings to match our platform's formula, test it privately first, then run it non-binding alongside one real upcoming proposal so we can compare results directly.
-3. **Track 3 (receipt ask):** send Closer's team a direct, specific request for a simple public vote-receipt page, informed by this proposal having passed.
-4. **No new binding process yet.** Once we've actually run the Snapshot pilot and seen how it compares, a follow-up proposal — informed by that evidence, not guesswork — can ask the DAO whether to make anything here official.
+This doesn't touch how voting works at all. It asks the platform to publish, after each vote closes, enough information that you personally could look up your own vote and see: yes, this is exactly what I voted, counted exactly once, at the weight I actually had. No wallets, no codes, no technical steps — just a page you could check the way you'd check a receipt.
+
+It's the easiest thing to ask for, and the platform's own team could likely do it without much extra work, even while booking issues stay their priority. It genuinely helps: it turns "just trust us" into "here, look for yourself, at least for your own vote."
+
+It doesn't fully close the gap. You could confirm your own vote — but confirming that *everyone's* votes together add up honestly still depends on trusting the same team, since they'd still be the one showing you the receipt. It's a real improvement, not a complete fix.
+
+**What this means for you:** you'd be able to check your own vote landed correctly. Checking everyone else's would still take someone's word for it.
+
+## One ask, not three
+
+These three aren't rivals — we could ask for #1 and #3 together right now, and stand up #2 in parallel as a trial run, voting there alongside our platform on one real decision, before anyone treats it as official.
+
+Because our platform's own voting tool only offers yes, no or abstain — no way to rank or pick among options — this proposal has to ask one question rather than three: **do we back pursuing all three together?** A "Yes" mandates exploring and running all three in parallel. It does not lock in which one, if any, becomes official — that's a separate decision, later, once we have real results to look at, not guesses.
+
+## What this proposal is not doing
+
+- It is not accusing anyone of rigging a vote. Nothing found here says a result has ever been wrong.
+- It is not asking you to distrust the people who built and run our platform. They're doing a genuinely hard job, mostly unpaid attention, spread thin — and they told us the truth about their priorities instead of a comfortable answer.
+- It is not asking for a blank check. Tracks 1 and 3 are requests to a team on their own schedule; track 2 costs nothing but time to reactivate, and stays non-binding until a later proposal, informed by real results, says otherwise.
+- It is not technical homework for you. If any part of this proposal needs unpacking, that's on the proposal, not on you — say so and it'll get fixed.
+
+## What happens next
+
+Read this, disagree with it, add what's missing — in comments, at the next call, wherever this conversation wants to happen. If a fourth option or a better combination turns up, it goes into the version we actually vote on. This goes to a real vote in the next week or two, through our normal process.
+
+---
+
+The full argument behind this — the code, the transaction data, exactly what does and doesn't get checked today — is in [the governance report](https://claude.ai/artifact/JcAcGuKqtQPsP6vGqbgJbC), finding four. The technical thread, if you want to see the actual working parts, is at [closer-ui #1178](https://github.com/closerdao/closer-ui/issues/1178).
+
+*Made with ❤️ by Gustavito, TDF Citizen & Community Governance Activist.*
+*Tell me where this loses you, or where I've got it wrong: [t.me/sepu85](https://t.me/sepu85)*
