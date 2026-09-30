@@ -1,6 +1,8 @@
 # TDF governance proposal (draft): mandate for verifiable voting
 
-> **Status:** draft, not yet submitted. The technical RFC is live at [closerdao/closer-ui#1178](https://github.com/closerdao/closer-ui/issues/1178), with its Phase 1 already open as [closerdao/closer-ui#1179](https://github.com/closerdao/closer-ui/pull/1179). Written to be posted through TDF's normal proposal process once that thread has had initial engagement. Edit freely before submitting — this is a starting point, not a final text.
+> **Superseded by [`PROPOSAL.md`](./PROPOSAL.md).** That version uses TDF's actual proposal template (What / Why / Impact / Resources / How), is written in plain language for a non-technical DAO, and works around Closer's yes/no/abstain-only voting by framing all three tracks as one bundled mandate rather than a menu to pick from. This file is kept for its more detailed technical framing, not as the thing to submit.
+>
+> **Status:** draft, not yet submitted. The technical RFC is live at [closerdao/closer-ui#1178](https://github.com/closerdao/closer-ui/issues/1178), with its Phase 1 already open as [closerdao/closer-ui#1179](https://github.com/closerdao/closer-ui/pull/1179).
 
 ## Title
 
