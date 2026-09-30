@@ -2,9 +2,9 @@
 
 *A TDF governance proposal — three complementary ways to get there, bundled into one ask.*
 
-> Draft, for community discussion before a formal vote. Background: [the governance report](https://claude.ai/artifact/JcAcGuKqtQPsP6vGqbgJbC) (finding 4), its [plain-language companion](https://claude.ai/artifact/G4K84cwxagr1tCS7QY9n6n), and the technical thread at [closer-ui#1178](https://github.com/closerdao/closer-ui/issues/1178).
+> Draft, for community discussion before a formal vote. Background: [ClaudeAI Security Audit](https://claude.ai/artifact/1GwGswG87hYETcbkZ2b3P1#49fae162-f89b.m75976w5ayj.4751~what-would-make-this-trustless), and the technical thread at [closer-ui#1178](https://github.com/closerdao/closer-ui/issues/1178).
 
-Some of you already read the governance report from this year's Gathering, or its short version. One finding in it keeps coming up in conversation, so it gets its own proposal: **right now, nobody outside the platform can check that a vote count is correct — and there's no way for the platform to prove it to you even if it wanted to, because the system that runs our votes was never built to produce that kind of proof.**
+**Right now, nobody outside the Closer platform/system admin can check that a vote count is correct — and there's no way for the platform to prove it to you even if it wanted to, because the system that runs our votes was NOT properly built to produce that kind of proof.** Closer governance don't run on a Celo blockchain (that'd be BTW gas expensive), neither provides any proper cryptographic proof that validates the voting counting is right (as platforms like Snapshot do).  
 
 That's not a small thing for a DAO. So here are three ways we could fix it, in plain words, with the honest trade-offs of each. This isn't asking you to pick one. It's asking us to look at them together before a real vote in the next week or two.
 
@@ -27,15 +27,15 @@ You wouldn't need to save any codes, understand any cryptography, or do anything
 
 This is our platform's own team properly finishing what they started: make each vote actually signed by your wallet, and published somewhere anyone can check — not just a private database. This is the best outcome if it happens, because it fixes the actual tool we vote on, for good, without anyone needing to learn a second system.
 
-Someone from our community already opened this as a request with the team that builds the platform, in the open, where anyone can read it: [closer-ui #1178](https://github.com/closerdao/closer-ui/issues/1178). Part of the fix is already written and offered to them as ready-to-use code.
+I already opened this as a request with the team that builds the platform, in the open, where anyone can read it: [closer-ui #1178](https://github.com/closerdao/closer-ui/issues/1178). Part of the fix is already written and offered to them as ready-to-use code.
 
-**The honest part.** Their team wrote back, and it's worth reading in full rather than as a brush-off:
+**The honest part.** Their team wrote back (in private), and it's worth reading in full rather than as a brush-off:
 
 > "In terms of prioritization though right now the highest priority is addressing a lot of the booking issues that are really negatively impacting [people living here] and others at the moment. So until the booking issues are resolved and we can guarantee a level of consistency…"
 
-That's a small team doing too much with too little, being straight with us about it — booking problems for people who actually live here understandably come before a governance fix nobody has been hurt by yet. Which is fair. It also means we shouldn't sit and wait for it before doing anything else.
+That's a small team doing too much with too little, being straight with us about it — booking problems for people who actually live here understandably come before a governance fix nobody has been hurt by yet. Which is fair. It also means we shouldn't sit and wait for it before doing anything else. __There has been none formal response so far to that [closer issue](https://github.com/closerdao/closer-ui/issues/1178)__. Supporting this option would mean to ask Closer to assign a better priority to this issue.
 
-**What this means for you:** worth asking for, worth being patient about, and not something to plan our next vote around.
+**What this means for you:** worth asking for, worth being patient about.
 
 ### 2. Vote on Snapshot in the meantime
 *borrows a fix that already exists*
@@ -44,7 +44,7 @@ Snapshot is the voting tool most crypto communities use, TDF included — before
 
 For you, voting would feel almost identical: connect your wallet, pick yes, no or abstain. The difference is entirely on the checking side, not the voting side. The catch is that our old space's settings only count plain TDF tokens today — our actual voting formula (TDF, including staked TDF, plus Presence and Sweat) would need to be reprogrammed into it, and someone with access to the old space's settings would need to do that. The exact configuration to paste in is already written up: [`snapshot-space-config.md`](https://github.com/sepu85/tdf-snapshot-voting/blob/master/snapshot-space-config.md).
 
-Worth knowing too: Snapshot doesn't force every proposal into a plain yes/no/abstain the way our platform does — it can show several options to choose between, or rank. Our own platform's rigid yes/no/abstain is part of why this very proposal has to bundle three ideas into one ask instead of letting you weigh them separately (more on that below). Snapshot wouldn't have that limitation.
+Worth knowing too: Snapshot doesn't force every proposal into a plain yes/no/abstain the way our Closer platform does — it can show several options to choose between, or rank. Our own platform's rigid yes/no/abstain is part of why this very proposal has to bundle three ideas into one ask instead of letting you weigh them separately (more on that below). Snapshot wouldn't have that limitation.
 
 **What this means for you:** same wallet, same click, but this time anyone — including you — could independently prove the result afterward.
 
@@ -74,7 +74,7 @@ Because our platform's own voting tool only offers yes, no or abstain — no way
 
 ## What happens next
 
-Read this, disagree with it, add what's missing — in comments, at the next call, wherever this conversation wants to happen. If a fourth option or a better combination turns up, it goes into the version we actually vote on. This goes to a real vote in the next week or two, through our normal process.
+Read this, disagree with it, add what's missing — in comments or wherever this conversation wants to happen. If a fourth option or a better combination turns up, it goes into the version we actually vote on. This goes to a real vote in the next week or two, through our normal process.
 
 ---
 
